@@ -30,7 +30,7 @@ namespace SimpleMan.Notifier
 
             // set notification header
             string header = GetOptionValue(args, "-h");
-            if (!String.IsNullOrEmpty(text))
+            if (!String.IsNullOrEmpty(header))
                 options["Header"] = header;
 
             SimpleShortcut simepleShortcut = new SimpleShortcut();
