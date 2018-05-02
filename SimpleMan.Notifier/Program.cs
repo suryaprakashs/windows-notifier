@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading;
 using Windows.Data.Xml.Dom;
 using Windows.UI.Notifications;
 
@@ -39,6 +40,8 @@ namespace SimpleMan.Notifier
 
             Notify notify = new Notify();
             notify.NotifyText(options);
+
+            Thread.Sleep(10000);
 
         }
 
@@ -83,10 +86,16 @@ namespace SimpleMan.Notifier
             //imageElements[0].Attributes.GetNamedItem("src").NodeValue = imagePath;
 
             ToastNotification toast = new ToastNotification(toastXml);
+            toast.Activated += toast_Activated;
 
             // Show the toast. Be sure to specify the AppUserModelId on your application's shortcut!
             ToastNotificationManager.CreateToastNotifier(options["ApplicationId"]).Show(toast);
 
+        }
+
+        void toast_Activated(ToastNotification sender, object args)
+        {
+            
         }
 
     }
